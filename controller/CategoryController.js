@@ -1,9 +1,9 @@
-import Item from '../models/item';
-export default class ItemController {
+import Category from '../models/category';
+export default class CategoryController {
   getAll(req, res, next) {
-    Item.find({}, (err, docs) => {
+    Category.find({}, (err, docs) => {
       if (!err && docs) {
-        res.send({items: docs});
+        res.send({categories: docs});
       } else {
         return next(err);
       }
@@ -12,9 +12,9 @@ export default class ItemController {
 
   getOne(req, res, next) {
     let id = req.params.id;
-    Item.findById(id,(err,doc)=>{
+    Category.findById(id,(err,doc)=>{
       if(!err && doc){
-        res.send({item:doc})
+        res.send({category:doc})
       }else {
         return next(err);
       }
@@ -22,8 +22,8 @@ export default class ItemController {
   }
 
   addOne(req,res,next){
-    let item = req.body.item;
-    new Item(item).save((err,doc)=>{
+    let category = req.body.category;
+    new Category(category).save((err,doc)=>{
       if(!err && doc){
         res.sendStatus(201)
       }else {
@@ -34,7 +34,7 @@ export default class ItemController {
 
   deleteOne(req, res, next) {
     let id = req.params.id;
-    Item.findByIdAndRemove(id, (err)=>{
+    Category.findByIdAndRemove(id, (err)=>{
       if(!err){
         res.sendStatus(200)
       }else {
@@ -45,9 +45,8 @@ export default class ItemController {
 
   updateOne(req, res, next) {
     let id = req.params.id;
-    let item = req.body.item;
-    console.log(id,item);
-    Item.findByIdAndUpdate(id, item, (err) => {
+    let category = req.body.category;
+    Category.findByIdAndUpdate(id, category, (err) => {
       if (!err) {
         res.sendStatus(200)
       } else {
@@ -56,3 +55,4 @@ export default class ItemController {
     });
   }
 }
+

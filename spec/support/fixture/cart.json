@@ -1,0 +1,14 @@
+[
+  {
+    "goods": [
+      {
+        "goodId": "5898836601ae3c3ba5c60a7d",
+        "count":1
+      },
+      {
+        "goodId": "5898836601ae3c3ba5c60a7e",
+        "count":1
+      }],
+    "total":8
+  }
+]
