@@ -5,9 +5,9 @@ var path = require('path');
 var _cachedTestData;
 
 var fixtureModelMap = {
-  'item':require('../../../models/item'),
-  'cart':require('../../../models/cart'),
-  'category':require('../../../models/category')
+  'item':require('../../model/item'),
+  'cart':require('../../model/cart'),
+  'category':require('../../model/category')
 };
 
 function cacheData(done) {
@@ -29,25 +29,22 @@ function readFileData(file, callBack) {
 }
 
 function refreshMongo(mongoData, callBack) {
-  var funList = [function(done) {
-    done(null, null);
+  var funList = [(done)=>{
+    done(null,null);
   }];
 
-  mongoData.filter((item)=> {
-    return item.name !== 'teacher-session';
-  }).forEach((item, key) => {
+  mongoData.forEach((item, key) => {
     funList.push(function(data, done) {
       var model = fixtureModelMap[this.name];
       model.remove(done);
     }.bind(item));
 
-    funList.push(function(data, done) {
-      var records = this.content;
-      var model = fixtureModelMap[this.name];
-      model.create(records, done);
-    }.bind(item));
+      funList.push(function(data, done) {
+        var records = this.content;
+        var model = fixtureModelMap[this.name];
+        model.create(records, done);
+      }.bind(item));
   });
-
   async.waterfall(funList, callBack);
 }
 

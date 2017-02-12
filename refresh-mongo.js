@@ -1,12 +1,17 @@
-import mongoose from 'mongoose';
-import config from 'config';
+const mongoose = require( 'mongoose');
+const config = require( 'config');
 mongoose.connect(config.get('mongoUri'));
-import mongoTools from './spec/support/fixture/mongo-tools';
+mongoose.Promise = global.Promise;
+
+const mongoTools = require( './tool/fixture/mongo-tools');
 
 mongoTools.refresh((err)=>{
-  if(err){
-    console.log(err,'刷新数据库数据失败');
-  }else {
-    console.log('刷新数据库数据成功');
+  let status = 1;
+  if(!err){
+    status = 0;
+    console.log('数据库刷新成功')
   }
+  mongoose.connection.close(function() {
+    process.exit(status);
+  })
 });

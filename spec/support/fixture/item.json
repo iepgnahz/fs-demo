@@ -1,6 +1,0 @@
-[
-  {"_id":"5898836601ae3c3ba5c60a7d","barcode": "1","name":"可口可乐","unit":"瓶","price":3},
-  {"_id":"5898836601ae3c3ba5c60a7e","barcode": "2","name":"薯片","unit":"袋","price":5},
-  {"_id":"5898836601ae3c3ba5c60a7f","barcode": "3","name":"瓜子","unit":"袋","price":2},
-  {"_id":"589888c6fe65063da17ea9f8","barcode": "4","name":"酸奶","unit":"瓶","price":4}
-]
