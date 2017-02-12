@@ -7,7 +7,8 @@ var _cachedTestData;
 var fixtureModelMap = {
   'item':require('../../model/item'),
   'cart':require('../../model/cart'),
-  'category':require('../../model/category')
+  'category':require('../../model/category'),
+  'user':require('../../model/user')
 };
 
 function cacheData(done) {

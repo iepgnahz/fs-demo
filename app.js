@@ -3,12 +3,11 @@ const express = require('express');
 const config = require('config');
 const router = require('./router');
 const bodyParser = require('body-parser');
+const cookieParser =  require('cookie-parser');
 mongoose.connect(config.get('mongoUri'));
 mongoose.Promise = require('bluebird');
-
-
 const app = express();
-
+app.use(cookieParser());
 app.use(bodyParser.json());
 
 router(app);
